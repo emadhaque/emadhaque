@@ -11,11 +11,15 @@
   </style>
 <meta charset="UTF-8">
 <title>My Name is Emad...</title>
+   <script>
+      var stockInput= "tickerInput";
+      document.getElementByID("tickerInput").value = stockInput;
+   </script>
 </head>
 
 <body>
    <h1 class="text-center"> Which Stock?
-   <input type="text" class="text" placeholder="Stock Symbol">
+   <input id="tickerInput" type="text" class="text" placeholder="Stock Symbol">
    <button class="btn" type="button">Go!</button>
    </h1>
 
