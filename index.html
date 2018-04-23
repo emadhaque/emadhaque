@@ -13,7 +13,7 @@
 <title>My Name is Emad...</title>
    <script>
       //sets the input of "Which Stock" as variable stockInput
-      var stockInput= "tickerInput";
+     /* var stockInput= "tickerInput";
       document.getElementByID("tickerInput").value = stockInput;
       var googleFinance = require('google-finance');
 $ npm install google-finance
@@ -25,7 +25,37 @@ googleFinance.companyNews({
 }, function (err, news) {
   //...
 });
+*/
+      var util = require('util');
 
+require('colors');
+
+var googleFinance = require('../..');
+
+var SYMBOL = document.getElementById("SYMBOL");
+var FROM = '2014-01-01';
+var TO = '2014-12-31';
+
+googleFinance.historical({
+  symbol: SYMBOL,
+  from: FROM,
+  to: TO
+}).then(function (quotes) {
+  console.log(util.format(
+    '=== %s (%d) ===',
+    SYMBOL,
+    quotes.length
+  ).cyan);
+  if (quotes[0]) {
+    console.log(
+      '%s\n...\n%s',
+      JSON.stringify(quotes[0], null, 2),
+      JSON.stringify(quotes[quotes.length - 1], null, 2)
+    );
+  } else {
+    console.log('N/A');
+  }
+});
       
    </script>
 </head>
