@@ -26,13 +26,13 @@ googleFinance.companyNews({
   //...
 });
 */
-      var util = require('util');
+var util = require('util');
 
 require('colors');
 
 var googleFinance = require('../..');
 
-var SYMBOL = document.getElementById("SYMBOL");
+var SYMBOL = 'NASDAQ:AAPL';
 var FROM = '2014-01-01';
 var TO = '2014-12-31';
 
@@ -40,7 +40,8 @@ googleFinance.historical({
   symbol: SYMBOL,
   from: FROM,
   to: TO
-}).then(function (quotes) {
+}, function (err, quotes) {
+  if (err) { throw err; }
   console.log(util.format(
     '=== %s (%d) ===',
     SYMBOL,
