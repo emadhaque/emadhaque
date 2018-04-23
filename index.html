@@ -16,7 +16,8 @@
       var stockInput= "tickerInput";
       document.getElementByID("tickerInput").value = stockInput;
       var googleFinance = require('google-finance');
-
+$ npm install google-finance
+      
 googleFinance.companyNews({
   symbol: 'NASDAQ:AAPL'
 }, function (err, news) {
