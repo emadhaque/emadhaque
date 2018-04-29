@@ -9,67 +9,67 @@
         color: black;
       }
   </style>
+   <script type="text/javascript" src='stockexample.js'> </script>
 <meta charset="UTF-8">
 <title>My Name is Emad...</title>
    <script>
-      //sets the input of "Which Stock" as variable stockInput
-     /* var stockInput= "tickerInput";
-      document.getElementByID("tickerInput").value = stockInput;
-      var googleFinance = require('google-finance');
-$ npm install google-finance
-      
-var googleFinance = require('google-finance');
-
-googleFinance.companyNews({
-  symbol: 'NASDAQ:AAPL'
-}, function (err, news) {
-  //...
-});
-*/
-var util = require('util');
-
-require('colors');
-
-var googleFinance = require('../..');
-
-var SYMBOL = 'NASDAQ:AAPL';
-var FROM = '2014-01-01';
-var TO = '2014-12-31';
-
-googleFinance.historical({
+  // var googleFinance = require('google-finance');
+   /*sets the input of "Which Stock" as variable stockInput and from and to
+   var SYMBOL= document.getElementById("SYMBOL").innerHTML;
+   var START_DATE= document.getElementById("histFROM").innerHTML;
+   var END_DATE= document.getElementById("histTO").innerHTML;
+   googleFinance.historical({
   symbol: SYMBOL,
-  from: FROM,
-  to: TO
+  from: START_DATE,
+  to: END_DATE
 }, function (err, quotes) {
-  if (err) { throw err; }
-  console.log(util.format(
-    '=== %s (%d) ===',
-    SYMBOL,
-    quotes.length
-  ).cyan);
-  if (quotes[0]) {
-    console.log(
-      '%s\n...\n%s',
-      JSON.stringify(quotes[0], null, 2),
-      JSON.stringify(quotes[quotes.length - 1], null, 2)
-    );
-  } else {
-    console.log('N/A');
+});*/
+function getDataforDay(){
+var AlphaVantageAPI = require('alpha-vantage-cli').AlphaVantageAPI;
+var SYMBOL= document.getElementById("SYMBOL").innerHTML;
+var yourApiKey = 'K674ZW6LZLAVGQWU';
+var alphaVantageAPI = new AlphaVantageAPI(yourApiKey, 'compact', true);
+
+alphaVantageAPI.getDailyData(var SYMBOL)
+    .then(dailyData => {
+        console.log("Daily data:");
+        console.log(dailyData);
+    })
+    .catch(err => {
+        console.error(err);
+    });
   }
-});
-      
+
+
+//finds users geolocation
+      if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(function(position) {
+    $("#data").html("latitude: " + position.coords.latitude + "<br>longitude: " + position.coords.longitude);
+  });
+}
+
    </script>
 </head>
 
 <body>
+ <form method="get" id="form1">
+  Which Stock?<input type="text" name="STOCK" id="SYMBOL">
+ </form>
+ <!––
    <h1 class="text-center"> Which Stock?
-      
+
    <input id="SYMBOL" type="text" class="text" placeholder="Stock Symbol (Ex NASDAQ:AAPL)">
-    <input id="histFROM" type="text" class="text" placeholder="From ex: 2014-12-31">
-       <input id="histTO" type="text" class="text" placeholder="To ex: 2014-12-31">
-      
-   <button class="btn" type="button">Go!</button>
    </h1>
+   <h1 class="text-center"> From?
+    <input id="histFROM" type="text" class="text" placeholder="From ex: 2014-12-31">
+  </h1>
+  <h1 class="text-center"> Until when?
+       <input id="histTO" type="text" class="text" placeholder="To ex: 2014-12-31">
+
+   <button form="form1" onclick="getDataforDay()" formtarget="_blank" id="homeSubmit" class="btn" value="sumbit" type="submit">Go!</button>
+   </h1>
+ -->
+
 
 </body>
 
