@@ -20,7 +20,7 @@
 
      function getStock(SYMBOL){
        var AlphaVantageAPI = require('alpha-vantage-cli').AlphaVantageAPI;
-       var yourApiKey = 'K674ZW6LZLAVGQWU';
+       var yourApiKey = 'demo';
        var alphaVantageAPI = new AlphaVantageAPI(yourApiKey, 'compact', true);
 
        alphaVantageAPI.getIntradayData(SYMBOL, '15min')
